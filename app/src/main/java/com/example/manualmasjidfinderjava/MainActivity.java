@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteFullException;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,11 +44,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView AddressText;
     private Button LocationButton;
     private LocationRequest locationRequest;
+    private DBHandler dbHandler;
+    private SQLiteDatabase db;
 
-    double icwslong = -88.1840428154465;
-    double icwslat = 41.944271719952326;
-    double iielong = -88.2404171354376;
-    double iielat = 42.01908492194405;
+    double icwslong = -88.1840428154465; //entered
+    double icwslat = 41.944271719952326; //entered
+    double iielong = -88.2404171354376; //entered
+    double iielat = 42.01908492194405; //entered
     double darulong = -88.0452914577771;
     double darulat = 41.903242194423456;
     double alhudalong = -88.1187362844016;
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     double islamicsocietyofnorthwestsuburbslong = -88.0306084692998;
     double islamiccenterofwheatonlat = 41.89032086920186;
     double islamiccenterofwheatonlong = -88.0940111021456;
-    private Object SQLiteDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
+
+        //Start database initialization**********************************************************************
+        dbHandler = new DBHandler(MainActivity.this);
+        dbHandler.onCreate(db); // <- db never gets intialized
+
+        //End database initialization************************************************************************
+
         //SQLiteDatabase myDatabase;
         
         //myDatabase = openOrCreateDatabase("masjidcoordiantes.db",SQLiteDatabase.hashCode(), null);
