@@ -28,9 +28,33 @@
 
     <Button
         android:id="@+id/secondActivityBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:text="Open Activity 2" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="5dp"
+        android:text="Settings" />
+
+    <Button
+        android:id="@+id/thirdactivitybutton"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="5dp"
+        android:text="Calculate" />
+
+    <Button
+        android:id="@+id/fourthactivitybutton"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="276dp"
+        android:layout_marginBottom="5dp"
+        android:text="Feedback" />
 
 
 </RelativeLayout>

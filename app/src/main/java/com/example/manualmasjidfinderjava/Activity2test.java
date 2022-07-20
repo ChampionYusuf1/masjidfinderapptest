@@ -27,4 +27,5 @@ public class Activity2test extends AppCompatActivity {
         startActivity(intent);
         return null;
     }
+
 }
