@@ -39,22 +39,19 @@ public class DBHandler extends SQLiteOpenHelper {
         // an sqlite query and we are
         // setting our column names
         // along with their data types.
-        String query = "CREATE TABLE " + TABLE_NAME + " ("
+        /*String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + LATITUDE_COL + " TEXT,"
-                + LONGITUDE_COL + " TEXT)";
-
+                + LONGITUDE_COL + " TEXT)";*/
+        String query = "INSERT INTO " + TABLE_NAME + "(latCol, longCol) VALUES " +
+                "(41.944271719952326, -88.1840428154465)," + //icws
+                "(42.01908492194405, -88.2404171354376)," + //iie
+                "(41.903242194423456, -88.0452914577771);";//darussalaam
         // at last we are calling a exec sql
         // method to execute above sql query
         db.execSQL(query);
-
-        String initializer = "INSERT INTO " + TABLE_NAME + "(idCol, latCol, longCol) VALUES " +
-                "(1, 41.944271719952326, -88.1840428154465)," + //icws
-                "(2, 42.01908492194405, -88.2404171354376)," + //iie
-                "(3, 41.903242194423456, -88.0452914577771);";//darussalaam
-        db.execSQL(initializer);
-        db.close();
     }
+
 
 
     @Override
