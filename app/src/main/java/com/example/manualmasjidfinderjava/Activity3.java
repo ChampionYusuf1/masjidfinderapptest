@@ -1,22 +1,17 @@
 package com.example.manualmasjidfinderjava;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
@@ -35,20 +30,18 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity {
-    private Button button;
+public class Activity3 extends AppCompatActivity {
 
-    private TextView AddressText;
-    private Button LocationButton;
-    private LocationRequest locationRequest;
-    private DBHandler dbHandler;
-    private SQLiteDatabase db;
-    private Button secondactivitybutton;
+//calculate tab
     private Button thirdactivitybutton;
-    private Button fourthactivitybutton;
+    private Button calculatebutton;
+    private TextView calculatetext;
+    private LocationRequest locationRequest;
 
     double icwslong = -88.1840428154465; //entered
     double icwslat = 41.944271719952326; //entered
@@ -72,55 +65,29 @@ public class MainActivity extends AppCompatActivity {
     double islamicsocietyofnorthwestsuburbslong = -88.0306084692998;
     double islamiccenterofwheatonlat = 41.89032086920186;
     double islamiccenterofwheatonlong = -88.0940111021456;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        AddressText = findViewById(R.id.textView);
-        LocationButton = findViewById(R.id.button);
+        setContentView(R.layout.activity_3);
+        thirdactivitybutton = findViewById(R.id.buttonformainactivity);
+        calculatebutton = findViewById(R.id.buttonforcalculation);
+        calculatetext = findViewById(R.id.calculatetext);
 
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
 
-
-        //settings
-        secondactivitybutton = findViewById(R.id.secondActivityBtn);
-        //calculate
-        thirdactivitybutton = findViewById(R.id.thirdactivitybutton);
-        //feedback
-        fourthactivitybutton = findViewById(R.id.fourthactivitybutton);
-
-        //Start database initialization**********************************************************************
-       // dbHandler = new DBHandler(MainActivity.this);
-        //dbHandler.onCreate(db); // <- db never gets intialized
-
-        //End database initialization************************************************************************
-
-        //SQLiteDatabase myDatabase;
-
-        
-        //myDatabase = openOrCreateDatabase("masjidcoordiantes.db",SQLiteDatabase.hashCode(), null);
-        
-
-        //LocationButton.setOnClickListener((View.OnClickListener)v-> getCurrentLocation());
-        //secondactivitybutton.setOnClickListener(openActivity2());
-        secondactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity2());
-        thirdactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity3());
-        fourthactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity4());
-
-
+        thirdactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity5());
+        getCurrentLocation();
 
 
     }
-
-
-
-    @Override
+    public View.OnClickListener openActivity5() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        return null;
+    }
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -138,25 +105,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 2) {
-            if (resultCode == Activity.RESULT_OK) {
-
-                getCurrentLocation();
-            }
-        }
-    }
-
     private void getCurrentLocation() {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(Activity3.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
                 if (isGPSEnabled()) {
 
@@ -171,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                                 int index = locationResult.getLocations().size() - 1;
                                 double latitude = locationResult.getLocations().get(index).getLatitude();
                                 double longitude = locationResult.getLocations().get(index).getLongitude();
-                              // double icwslong = longitude + -88.1840428154465;// double icwslat = latitude - 41.944271719952326;// double icwstotal= icwslat + icwslong;// double iielong = longitude + -88.2404171354376;//  double iielat = latitude - 42.01908492194405;//  double iietotal = iielong + iielat;
+                                // double icwslong = longitude + -88.1840428154465;// double icwslat = latitude - 41.944271719952326;// double icwstotal= icwslat + icwslong;// double iielong = longitude + -88.2404171354376;//  double iielat = latitude - 42.01908492194405;//  double iietotal = iielong + iielat;
 
 
                                 //if (icwstotal > iietotal){
@@ -211,12 +164,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                                 Map<Double, String> reversedDistances = new HashMap<>();
-                                        for (Map.Entry<String, Double> entry : distances.entrySet()){
-                                            reversedDistances.put(entry.getValue(), entry.getKey());
-                                        }
+                                for (Map.Entry<String, Double> entry : distances.entrySet()){
+                                    reversedDistances.put(entry.getValue(), entry.getKey());
+                                }
 
                                 ArrayList<Double> distanceValues = new ArrayList<>(distances.values());
-                                AddressText.setText((reversedDistances.get((BubbleSort(distanceValues).get(0)))));
+                                calculatetext.setText((reversedDistances.get((BubbleSort(distanceValues).get(0)))));
 
 
 
@@ -225,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     };
-                    LocationServices.getFusedLocationProviderClient(MainActivity.this)
+                    LocationServices.getFusedLocationProviderClient(Activity3.this)
                             .requestLocationUpdates(locationRequest, callback, Looper.getMainLooper());
 
                 } else {
@@ -233,11 +186,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             } else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                AddressText.setText("Ask for permission again");
+                calculatetext.setText("Ask for permission again");
             }
         }
     }
-
     private void turnOnGPS() {
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                 .addLocationRequest(locationRequest);
@@ -251,13 +203,13 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
-                    Toast.makeText(MainActivity.this, "GPS is already tured on", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity3.this, "GPS is already tured on", Toast.LENGTH_SHORT).show();
                 } catch (ApiException e) {
                     switch (e.getStatusCode()) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                             try {
                                 ResolvableApiException resolvableApiException = (ResolvableApiException) e;
-                                resolvableApiException.startResolutionForResult(MainActivity.this, 2);
+                                resolvableApiException.startResolutionForResult(Activity3.this, 2);
                             } catch (IntentSender.SendIntentException ex) {
                                 ex.printStackTrace();
                             }
@@ -303,20 +255,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return nums;
     }
-    public View.OnClickListener openActivity2() {
-        Intent intent = new Intent(this, Activity2test.class);
-        startActivity(intent);
-        return null;
-    }
-    public View.OnClickListener openActivity3() {
-        Intent intent = new Intent(this, Activity3.class);
-        startActivity(intent);
-        return null;
-    }
-    public View.OnClickListener openActivity4() {
-        Intent intent = new Intent(this, Activity4.class);
-        startActivity(intent);
-        return null;
-    }
-
 }

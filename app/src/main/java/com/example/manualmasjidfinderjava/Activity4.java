@@ -1,34 +1,29 @@
 package com.example.manualmasjidfinderjava;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-//settings
-public class Activity2test extends AppCompatActivity {
-    private Button secondactivitybutton;
 
+//feedback
+public class Activity4 extends AppCompatActivity {
+private Button fourthactivitybutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activity2test);
-        secondactivitybutton = findViewById(R.id.buttonformainactivity);
+        setContentView(R.layout.activity_4);
+        fourthactivitybutton = findViewById(R.id.buttonformainactivityfeedback);
 
-        secondactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity3());
-
+        fourthactivitybutton.setOnClickListener((View.OnClickListener) v-> openActivity4());
 
 
 
     }
-    public View.OnClickListener openActivity3() {
+    public View.OnClickListener openActivity4() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return null;
     }
-
-
 }
