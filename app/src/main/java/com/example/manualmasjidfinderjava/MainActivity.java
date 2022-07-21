@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         //myDatabase = openOrCreateDatabase("masjidcoordiantes.db",SQLiteDatabase.hashCode(), null);
         
 
+        //getCurrentLocation();
         //LocationButton.setOnClickListener((View.OnClickListener)v-> getCurrentLocation());
         //secondactivitybutton.setOnClickListener(openActivity2());
         secondactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity2());
