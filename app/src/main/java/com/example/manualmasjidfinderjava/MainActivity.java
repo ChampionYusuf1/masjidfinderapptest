@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private DBHandler dbHandler;
     private SQLiteDatabase db;
     private Button secondactivitybutton;
-    private Button thirdactivitybutton;
-    private Button fourthactivitybutton;
 
     double icwslong = -88.1840428154465; //entered
     double icwslat = 41.944271719952326; //entered
@@ -87,13 +85,7 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
 
-
-        //settings
         secondactivitybutton = findViewById(R.id.secondActivityBtn);
-        //calculate
-        thirdactivitybutton = findViewById(R.id.thirdactivitybutton);
-        //feedback
-        fourthactivitybutton = findViewById(R.id.fourthactivitybutton);
 
         //Start database initialization**********************************************************************
        // dbHandler = new DBHandler(MainActivity.this);
@@ -107,14 +99,10 @@ public class MainActivity extends AppCompatActivity {
         //myDatabase = openOrCreateDatabase("masjidcoordiantes.db",SQLiteDatabase.hashCode(), null);
         
 
-        //getCurrentLocation();
-        //LocationButton.setOnClickListener((View.OnClickListener)v-> getCurrentLocation());
+
+        LocationButton.setOnClickListener((View.OnClickListener)v-> getCurrentLocation());
         //secondactivitybutton.setOnClickListener(openActivity2());
         secondactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity2());
-        thirdactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity3());
-        fourthactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity4());
-
-
 
 
     }
@@ -220,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
                                 AddressText.setText((reversedDistances.get((BubbleSort(distanceValues).get(0)))));
 
 
-
                                 // }
 
                             }
@@ -309,15 +296,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         return null;
     }
-    public View.OnClickListener openActivity3() {
-        Intent intent = new Intent(this, Activity3.class);
-        startActivity(intent);
-        return null;
-    }
-    public View.OnClickListener openActivity4() {
-        Intent intent = new Intent(this, Activity4.class);
-        startActivity(intent);
-        return null;
-    }
-
 }
