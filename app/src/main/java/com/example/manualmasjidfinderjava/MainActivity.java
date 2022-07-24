@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteFullException;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,14 +40,12 @@ import java.util.*;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
 
     private TextView AddressText;
     private Button LocationButton;
     private LocationRequest locationRequest;
     private DBHandler dbHandler;
     private SQLiteDatabase db;
-    private Button secondactivitybutton;
 
     double icwslong = -88.1840428154465; //entered
     double icwslat = 41.944271719952326; //entered
@@ -85,29 +84,21 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
 
-        secondactivitybutton = findViewById(R.id.secondActivityBtn);
-
         //Start database initialization**********************************************************************
-       // dbHandler = new DBHandler(MainActivity.this);
+        //dbHandler = new DBHandler(MainActivity.this);
         //dbHandler.onCreate(db); // <- db never gets intialized
 
         //End database initialization************************************************************************
 
         //SQLiteDatabase myDatabase;
-
         
         //myDatabase = openOrCreateDatabase("masjidcoordiantes.db",SQLiteDatabase.hashCode(), null);
         
 
 
         LocationButton.setOnClickListener((View.OnClickListener)v-> getCurrentLocation());
-        //secondactivitybutton.setOnClickListener(openActivity2());
-        secondactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity2());
-
-
+       
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -161,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                                 double latitude = locationResult.getLocations().get(index).getLatitude();
                                 double longitude = locationResult.getLocations().get(index).getLongitude();
                               // double icwslong = longitude + -88.1840428154465;// double icwslat = latitude - 41.944271719952326;// double icwstotal= icwslat + icwslong;// double iielong = longitude + -88.2404171354376;//  double iielat = latitude - 42.01908492194405;//  double iietotal = iielong + iielat;
+
 
 
                                 //if (icwstotal > iietotal){
@@ -221,7 +213,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             } else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                AddressText.setText("Ask for permission again");
             }
         }
     }
@@ -290,10 +281,5 @@ public class MainActivity extends AppCompatActivity {
             x++;
         }
         return nums;
-    }
-    public View.OnClickListener openActivity2() {
-        Intent intent = new Intent(this, Activity2test.class);
-        startActivity(intent);
-        return null;
     }
 }
