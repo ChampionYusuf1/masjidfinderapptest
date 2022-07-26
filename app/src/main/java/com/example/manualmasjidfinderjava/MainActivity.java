@@ -90,16 +90,6 @@ public class MainActivity extends AppCompatActivity {
         thirdactivitybutton = findViewById(R.id.thirdactivitybutton);
         fourthactivitybutton = findViewById(R.id.fourthactivitybutton);
 
-        //Start database initialization**********************************************************************
-       // dbHandler = new DBHandler(MainActivity.this);
-        //dbHandler.onCreate(db); // <- db never gets intialized
-
-        //End database initialization************************************************************************
-
-        //SQLiteDatabase myDatabase;
-
-        
-        //myDatabase = openOrCreateDatabase("masjidcoordiantes.db",SQLiteDatabase.hashCode(), null);
         
 
 
