@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class Activity3 extends AppCompatActivity {
 
-//calculate tab
+    //calculate tab
     private Button thirdactivitybutton;
     private Button calculatebutton;
     private TextView calculatetext;

@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteFullException;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,16 +40,14 @@ import java.util.*;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
 
     private TextView AddressText;
     private Button LocationButton;
     private LocationRequest locationRequest;
-    private DBHandler dbHandler;
-    private SQLiteDatabase db;
     private Button secondactivitybutton;
     private Button thirdactivitybutton;
     private Button fourthactivitybutton;
+
     double icwslong = -88.1840428154465; //entered
     double icwslat = 41.944271719952326; //entered
     double iielong = -88.2404171354376; //entered
@@ -89,23 +88,16 @@ public class MainActivity extends AppCompatActivity {
         secondactivitybutton = findViewById(R.id.secondActivityBtn);
         thirdactivitybutton = findViewById(R.id.thirdactivitybutton);
         fourthactivitybutton = findViewById(R.id.fourthactivitybutton);
-
         
 
 
         LocationButton.setOnClickListener((View.OnClickListener)v-> getCurrentLocation());
-        //secondactivitybutton.setOnClickListener(openActivity2());
+
         secondactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity2());
         thirdactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity3());
         fourthactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity4());
-
-
-
-
-
+       
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -159,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                                 double latitude = locationResult.getLocations().get(index).getLatitude();
                                 double longitude = locationResult.getLocations().get(index).getLongitude();
                               // double icwslong = longitude + -88.1840428154465;// double icwslat = latitude - 41.944271719952326;// double icwstotal= icwslat + icwslong;// double iielong = longitude + -88.2404171354376;//  double iielat = latitude - 42.01908492194405;//  double iietotal = iielong + iielat;
+
 
 
                                 //if (icwstotal > iietotal){
@@ -219,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             } else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                AddressText.setText("Ask for permission again");
             }
         }
     }
@@ -237,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
-                    Toast.makeText(MainActivity.this, "GPS is already tured on", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "GPS is already turned on", Toast.LENGTH_SHORT).show();
                 } catch (ApiException e) {
                     switch (e.getStatusCode()) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:

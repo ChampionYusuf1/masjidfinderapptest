@@ -9,7 +9,7 @@ import android.widget.Button;
 
 //feedback
 public class Activity4 extends AppCompatActivity {
-private Button fourthactivitybutton;
+    private Button fourthactivitybutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
