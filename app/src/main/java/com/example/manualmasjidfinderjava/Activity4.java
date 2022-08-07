@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-//feedback
+//zakat calculator
 public class Activity4 extends AppCompatActivity {
     private Button fourthactivitybutton;
     @Override

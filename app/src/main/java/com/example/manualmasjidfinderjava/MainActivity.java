@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
     private Button secondactivitybutton;
     private Button thirdactivitybutton;
     private Button fourthactivitybutton;
+    private View settings;
+    private View calculatelocation;
+    private View prayertimings;
+    private View zakatcalc;
 
     double icwslong = -88.1840428154465; //entered
     double icwslat = 41.944271719952326; //entered
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_screen);
 
         AddressText = findViewById(R.id.textView);
         LocationButton = findViewById(R.id.button);
@@ -88,16 +92,26 @@ public class MainActivity extends AppCompatActivity {
         secondactivitybutton = findViewById(R.id.secondActivityBtn);
         thirdactivitybutton = findViewById(R.id.thirdactivitybutton);
         fourthactivitybutton = findViewById(R.id.fourthactivitybutton);
+
+        prayertimings = findViewById(R.id.Prayertiming);
+        calculatelocation = findViewById(R.id.calculatelocation);
+        zakatcalc = findViewById(R.id.zakatcalculator);
+        settings = findViewById(R.id.settings);
         
+//activity 2 is settings
+        //activity 3 is calculate location
+        //activity 4 is settings
+
+        settings.setOnClickListener((View.OnClickListener)v-> openActivity2());
+        calculatelocation.setOnClickListener((View.OnClickListener)v-> openActivity3());
+        zakatcalc.setOnClickListener((View.OnClickListener)v-> openActivity4());
+        prayertimings.setOnClickListener((View.OnClickListener)v-> openActivity5());
 
 
-        LocationButton.setOnClickListener((View.OnClickListener)v-> getCurrentLocation());
-
-        secondactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity2());
-        thirdactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity3());
-        fourthactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity4());
        
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -293,6 +307,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public View.OnClickListener openActivity4() {
         Intent intent = new Intent(this, Activity4.class);
+        startActivity(intent);
+        return null;
+    }
+    public View.OnClickListener openActivity5(){
+        Intent intent = new Intent(this, Activity5.class);
         startActivity(intent);
         return null;
     }

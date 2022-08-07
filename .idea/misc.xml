@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/drawable/ic_bookmark__schedule__date__acalender.xml" value="0.3195" />
+        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/drawable/ic_global__globe__earth__protection__shield.xml" value="0.276" />
+        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/drawable/ic_search__find__music__audio__sound.xml" value="0.276" />
+        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/drawable/ic_wave__2_.xml" value="0.276" />
         <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/layout/activity_3.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/layout/activity_4.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/layout/activity_5.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/layout/activity_activity2test.xml" value="0.3" />
-        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/layout/activity_home_screen.xml" value="0.25" />
+        <entry key="..\:/Users/champ/AndroidStudioProjects/manualmasjidfinderjava/app/src/main/res/layout/activity_main.xml" value="0.19" />
         <entry key="..\:/Users/super/AndroidStudioProjects/masjidfinderapptest/app/src/main/res/layout/activity_home_screen.xml" value="0.3625" />
         <entry key="..\:/Users/super/AndroidStudioProjects/masjidfinderapptest/app/src/main/res/layout/activity_main.xml" value="0.31567028985507245" />
         <entry key="..\:/Users/super/AndroidStudioProjects/masjidfinderapptest/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
