@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textviewtest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This Is a Zakat calculator. Not intented for practical use, only for proof of concept, please refrain from using this to calculate your actual Zakat, Jazakallah, Masjid Finder Team "
@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewtest" />
 
     <TextView
         android:id="@+id/textView9"
@@ -47,7 +47,7 @@
         android:layout_marginEnd="316dp"
         android:text="Total Income:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewtest" />
 
     <TextView
         android:id="@+id/textView10"
@@ -70,12 +70,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/assets"
+        android:id="@+id/textview12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="356dp"
-        android:text="Assets"
+        android:text="Assets:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -90,7 +90,7 @@
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewtest" />
 
     <EditText
         android:id="@+id/properties"
@@ -103,10 +103,10 @@
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewtest" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal7"
+        android:id="@+id/assets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="224dp"
@@ -116,6 +116,28 @@
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewtest" />
+
+    <TextView
+        android:id="@+id/zakat"
+        android:layout_width="72dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginEnd="184dp"
+        android:background="#2196F3"
+        android:text="Zakat"
+        android:textColor="#212121"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/zakatbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginBottom="340dp"
+        android:text="Calculate Zakat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
