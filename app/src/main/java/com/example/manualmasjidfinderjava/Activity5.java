@@ -37,7 +37,7 @@ public class Activity5 extends AppCompatActivity {
 
         OkHttpClient client = new OkHttpClient();
 
-        String url = "https://muslimsalat.com/code/mstimes.php?key=edd356d0455a3dc83f18c0c46495fe65&location=&style=panel&color=dark&header=yes";
+        String url = "https://muslimsalat.com/code/mstimes.php?key=edd356d0455a3dc83f18c0c46495fe65&location=Bartlett&style=panel-compact&color=dark&header=yes";
 
         Request request = new Request.Builder()
                 .url(url)
