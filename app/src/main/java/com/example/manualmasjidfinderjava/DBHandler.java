@@ -1,6 +1,6 @@
+/*
 package com.example.manualmasjidfinderjava;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +12,8 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final String TABLE_NAME = "locations";
     private static final String LAT_COL = "lat";
     private static final String LONG_COL = "long";
+    private final SQLiteOpenHelper db = SQLiteOpenHelper(Activity3, "dbtest", SQLiteDatabase.OPEN_READWRITE);
+    private final SQLiteDatabase _db = getWritableDatabase();
 
 
     public DBHandler(Context context){
@@ -23,24 +25,30 @@ public class DBHandler extends SQLiteOpenHelper{
         String query = "CREATE TABLE " + TABLE_NAME + "(" +
                 LAT_COL + "int, "
                 + LONG_COL + "int)";
-        db.execSQL(query);
-        db.execSQL("INSERT INTO " + TABLE_NAME + "(" + LAT_COL + ", " + LONG_COL + ")" + " VALUES (0,0);");
+        this.db.execSQL(query);
+        this.db.execSQL("INSERT INTO " + TABLE_NAME + "(" + LAT_COL + ", " + LONG_COL + ")" + " VALUES (0,0);");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        this.db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
     public String returnData(){
-        SQLiteDatabase db = this.getWritableDatabase();
         String result = "";
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME +";";
+        System.out.println(db.get);
         Cursor cursor = db.rawQuery(query, null);
+        */
+/*
+        cursor.getCount();
         while(cursor.moveToNext()){
             result = cursor.getString(0);
         }
+        cursor.close();
+        *//*
+
         return result;
     }
-}
+}*/

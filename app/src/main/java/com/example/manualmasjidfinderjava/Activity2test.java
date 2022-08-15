@@ -43,7 +43,7 @@ public class Activity2test extends AppCompatActivity {
         return null;
     }
     public View.OnClickListener openGituhb() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ChampionYusuf1"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ChampionYusuf1/masjidfinderapptest"));
         startActivity(browserIntent);
         return null;
     }

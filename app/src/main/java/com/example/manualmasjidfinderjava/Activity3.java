@@ -43,7 +43,31 @@ public class Activity3 extends AppCompatActivity {
     private Button calculatebutton;
     private TextView calculatetext;
     private LocationRequest locationRequest;
-    private DBHandler dbHandler;
+    //private DBHandler dbHandler;
+
+
+    double icwslong = -88.1840428154465; //entered
+    double icwslat = 41.944271719952326; //entered
+    double iielong = -88.2404171354376; //entered
+    double iielat = 42.01908492194405; //entered
+    double darulong = -88.0452914577771;
+    double darulat = 41.903242194423456;
+    double alhudalong = -88.1187362844016;
+    double alhudalat = 41.99772729955197;
+    double msilong = -88.0806877256787;
+    double msilat = 41.924248920493966;
+    double baitulIlmacademylat = 42.0251286038466;
+    double baitulIlmacademylong= -88.1808935012285;
+    double wbccsaburlat = 42.01122752736403;
+    double wbccsaburlong = -88.1506811014002;
+    double islamiccommunitycenterlat = 42.04566499596798;
+    double islamiccommunitycenterlong = -88.3124475524246;
+    double islamiccenterofkanecountylat = 41.921563195103964;
+    double islamiccenterofkanecountylong = -88.3438628618128;
+    double islamicsocietyofnorthwestsuburbslat = 42.09867216457004;
+    double islamicsocietyofnorthwestsuburbslong = -88.0306084692998;
+    double islamiccenterofwheatonlat = 41.89032086920186;
+    double islamiccenterofwheatonlong = -88.0940111021456;
 
 
     @Override
@@ -62,15 +86,15 @@ public class Activity3 extends AppCompatActivity {
         thirdactivitybutton.setOnClickListener((View.OnClickListener)v-> openActivity5());
         getCurrentLocation();
 
-        dbHandler = new DBHandler(Activity3.this);
+        //dbHandler = new DBHandler(Activity3.this);
 
-        calculatebutton.setOnClickListener(new View.OnClickListener(){
+        /*calculatebutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View V){
                 calculatetext.setText(dbHandler.returnData());
             }
         });
-
+        */
 
     }
     public View.OnClickListener openActivity5() {
@@ -97,7 +121,10 @@ public class Activity3 extends AppCompatActivity {
     }
     private void getCurrentLocation() {
 
-        //DBHandler dbHandler = new DBHandler();
+
+
+
+
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -113,8 +140,59 @@ public class Activity3 extends AppCompatActivity {
 
                             if (locationResult != null && locationResult.getLocations().size() > 0) {
 
+                                int index = locationResult.getLocations().size() - 1;
+                                double latitude = locationResult.getLocations().get(index).getLatitude();
+                                double longitude = locationResult.getLocations().get(index).getLongitude();
+                                // double icwslong = longitude + -88.1840428154465;// double icwslat = latitude - 41.944271719952326;// double icwstotal= icwslat + icwslong;// double iielong = longitude + -88.2404171354376;//  double iielat = latitude - 42.01908492194405;//  double iietotal = iielong + iielat;
+
+
+
+                                //if (icwstotal > iietotal){
+                                double totaldistanceicws = getDistance(latitude, longitude, icwslat, icwslong);
+                                double totaldistanceiie = getDistance(latitude, longitude, iielat, iielong);
+                                double totaldistancedaru = getDistance(latitude, longitude, darulat, darulong);
+                                double totaldistancemsi = getDistance(latitude, longitude, msilat, msilong);
+                                double totaldistancealhuda = getDistance(latitude, longitude, alhudalat, alhudalong);
+                                double totaldistancebaitulIlmAcademy = getDistance(latitude, longitude, baitulIlmacademylat, baitulIlmacademylong);
+                                double totaldistancewbccsabur = getDistance(latitude, longitude, wbccsaburlat, wbccsaburlong);
+                                double totaldistanceislamiccommunitycenter = getDistance(latitude, longitude, islamiccommunitycenterlat, islamiccommunitycenterlong);
+                                double totaldistanceislamiccenterofkanecounty = getDistance(latitude, longitude, islamiccenterofkanecountylat, islamiccenterofkanecountylong);
+                                double totaldistanceislamicsocietyofnorthwestsuburbs = getDistance(latitude, longitude, islamicsocietyofnorthwestsuburbslat, islamicsocietyofnorthwestsuburbslong);
+                                double totaldistanceislamiccenterofwheaton = getDistance(latitude, longitude, islamiccenterofwheatonlat, islamiccenterofwheatonlong);
+
+
+
+
+
+                                //AddressText.setText(String.valueOf(getDistance(latitude, longitude, icwslat, icwslong)));
+                                // put all the total distance variables into an array list
+                                //sort the array list
+                                //display the arraylist from lowest value to highest value
+
+                                HashMap<String, Double> distances = new HashMap<>();
+                                distances.put("Islamic Center of Western Suburbs", totaldistanceicws);
+                                distances.put("Institute of Islamic Education", totaldistanceiie);
+                                distances.put("Darusalam", totaldistancedaru);
+                                distances.put("Muslim Society Inc.", totaldistancemsi);
+                                distances.put("Masjid Al-Huda", totaldistancealhuda);
+                                distances.put("Baitul Ilm Academy", totaldistancebaitulIlmAcademy);
+                                distances.put("WBCC Sabur", totaldistancewbccsabur);
+                                distances.put("Islamic Community Center", totaldistanceislamiccommunitycenter);
+                                distances.put("Islamic Center Of Kane County", totaldistanceislamiccenterofkanecounty);
+                                distances.put("Islamic Society of Northwest Suburbs", totaldistanceislamicsocietyofnorthwestsuburbs);
+                                distances.put("Islamic Center Of Wheaton", totaldistanceislamiccenterofwheaton);
+
+
+                                Map<Double, String> reversedDistances = new HashMap<>();
+                                for (Map.Entry<String, Double> entry : distances.entrySet()){
+                                    reversedDistances.put(entry.getValue(), entry.getKey());
+                                }
+                                ArrayList<Double> distanceValues = new ArrayList<>(distances.values());
+
+
                                 //calculatetext.setText(dbHandler.executeQuery("select * from test limit 2"));
                                 //calculatetext.setText(dbHandler.testDB());
+                                calculatetext.setText((reversedDistances.get((BubbleSort(distanceValues).get(0)))));
 
 
                             }
@@ -176,7 +254,21 @@ public class Activity3 extends AppCompatActivity {
 
     }
 
-
+    public static ArrayList<Double> BubbleSort(ArrayList<Double> nums) {
+        int x = 0;
+        while (x < nums.size()) {
+            for (int i = 0; i < nums.size() - 1; i++) {
+                if (nums.get(i + 1) < nums.get(i)) {
+                    double y = nums.get(i);
+                    double z = nums.get(i + 1);
+                    nums.set(i, z);
+                    nums.set(i + 1, y);
+                }
+            }
+            x++;
+        }
+        return nums;
+    }
 
     private double getDistance(double userLat, double userLong, double locLat, double locLong){
         return Math.pow(Math.pow(userLat - locLat, 2) + Math.pow(userLong - locLong, 2), 0.5);
